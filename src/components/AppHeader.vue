@@ -27,17 +27,19 @@ onMounted(() => {
       <CHeaderToggler @click="sidebar.toggleVisible()" style="margin-inline-start: -14px">
         <CIcon icon="cil-menu" size="lg" />
       </CHeaderToggler>
-      <CHeaderNav class="d-none d-md-flex">
-        <CNavItem>
-          <CNavLink href="/dashboard"> Dashboard </CNavLink>
-        </CNavItem>
-        <CNavItem>
-          <CNavLink href="/user">Benutzer</CNavLink>
-        </CNavItem>
-        <CNavItem>
-          <CNavLink href="/settings">Einstellungen</CNavLink>
-        </CNavItem>
-      </CHeaderNav>
+<CHeaderNav class="d-none d-md-flex">
+  <CNavItem>
+    <router-link class="nav-link" to="/dashboard">Dashboard</router-link>
+  </CNavItem>
+
+  <CNavItem>
+    <router-link class="nav-link" to="/user">Benutzer</router-link>
+  </CNavItem>
+
+  <CNavItem>
+    <router-link class="nav-link" to="/settings">Einstellungen</router-link>
+  </CNavItem>
+</CHeaderNav>
       <CHeaderNav class="ms-auto">
         <CNavItem>
           <CNavLink href="#">

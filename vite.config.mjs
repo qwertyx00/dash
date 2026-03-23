@@ -22,15 +22,15 @@ export default defineConfig(() => {
       ],
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.scss'],
     },
-    server: {
-      port: 3000,
-      proxy: {
-        '/api': {
-          target: 'http://localhost/admin',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, '/api'),
-        },
-      },
+server: {
+  port: 3000,
+  proxy: {
+    '/api': {
+      target: 'http://localhost/admin',
+      changeOrigin: true,
+      rewrite: (path) => path.replace(/^\/api/, '/api'),
     },
+  },
+},
   }
 })

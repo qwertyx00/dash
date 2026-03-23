@@ -1,7 +1,7 @@
 import { h, resolveComponent } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import DefaultLayout from '@/layouts/DefaultLayout'
+import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
 const routes = [
   {
@@ -10,19 +10,25 @@ const routes = [
     component: DefaultLayout,
     redirect: '/dashboard',
     children: [
+      // Dashboard
       {
-        path: '/dashboard',
+        path: 'dashboard',
         name: 'Dashboard',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () =>
-          import(
-            /* webpackChunkName: "dashboard" */ '@/views/dashboard/Dashboard.vue'
-          ),
+        component: () => import('@/views/nav/Dashboard.vue'),
       },
+
+      // Benutzer
       {
-        path: '/notifications',
+        path: 'user',
+        name: 'Benutzer',
+        component: () => import('@/views/nav/user.vue'),
+      },
+
+      // Settings
+
+      // Notifications (mit Children)
+      {
+        path: 'notifications',
         name: 'Notifications',
         component: {
           render() {
@@ -32,30 +38,31 @@ const routes = [
         redirect: '/notifications/alerts',
         children: [
           {
-            path: '/notifications/alerts',
+            path: 'alerts',
             name: 'Alerts',
             component: () => import('@/views/notifications/Alerts.vue'),
           },
           {
-            path: '/notifications/badges',
+            path: 'badges',
             name: 'Badges',
             component: () => import('@/views/notifications/Badges.vue'),
           },
           {
-            path: '/notifications/modals',
+            path: 'modals',
             name: 'Modals',
             component: () => import('@/views/notifications/Modals.vue'),
           },
           {
-            path: '/notifications/toasts',
+            path: 'toasts',
             name: 'Toasts',
             component: () => import('@/views/notifications/Toasts.vue'),
           },
         ],
       },
-
     ],
   },
+
+  // Error & Auth Pages
   {
     path: '/pages',
     redirect: '/pages/404',
@@ -69,32 +76,31 @@ const routes = [
       {
         path: '404',
         name: 'Page404',
-        component: () => import('@/views/pages/Page404'),
+        component: () => import('@/views/pages/Page404.vue'),
       },
       {
         path: '500',
         name: 'Page500',
-        component: () => import('@/views/pages/Page500'),
+        component: () => import('@/views/pages/Page500.vue'),
       },
       {
         path: 'login',
         name: 'Login',
-        component: () => import('@/views/pages/Login'),
+        component: () => import('@/views/pages/Login.vue'),
       },
       {
         path: 'register',
         name: 'Register',
-        component: () => import('@/views/pages/Register'),
+        component: () => import('@/views/pages/Register.vue'),
       },
     ],
   },
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(),
   routes,
   scrollBehavior() {
-    // always scroll to top
     return { top: 0 }
   },
 })
